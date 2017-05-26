@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveController : MonoBehaviour {
 
-	public float velCoeff = 0.0f;
+	public float velCoeff = 1.0f;
 
 	// Use this for initialization
 	void Start () {
