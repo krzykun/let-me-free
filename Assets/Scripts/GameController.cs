@@ -34,4 +34,15 @@ public class GameController : MonoBehaviour
     {
         IsMusicEnabled = enabled;
     }
+
+    public void StartGame()
+    {
+        Debug.Log("StartGame()");
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("ExitGame()");
+        Application.Quit();
+    }
 }
