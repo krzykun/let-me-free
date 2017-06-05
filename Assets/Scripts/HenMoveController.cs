@@ -7,7 +7,7 @@ public class HenMoveController : MonoBehaviour {
 
 	public Transform[] waypoints;
 	public bool goingLeft = false; // Tells us if the hen is going right (1) or left (0)
-	public float speed = 1.0f; // The amount given to Translate function on every update
+	public float speed = 0.1f; // The amount given to Translate function on every update
 	private SpriteRenderer rend;
 
 	// Use this for initialization
