@@ -6,12 +6,26 @@ public class PlayerMoveController : MonoBehaviour {
 
 	public float velCoeff = 1.0f;
 	public int health = 6;
+    public Vector2 startPosition;
+    public Vector2 endPosition;
 
 
 	// Use this for initialization
 	void Start () {
 		
 	}
+
+    // TODO This is triggered once the player reaches endPosition
+    void LevelWonTransition()
+    {
+        Debug.Log("LEVEL CLEARED - add transition here");
+    }
+
+    // TODO This is a trigger function for the 'game over' scene transition
+    void GameOverTransition()
+    {
+        Debug.Log("GAME OVER - add transition here");
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -24,19 +38,23 @@ public class PlayerMoveController : MonoBehaviour {
 		//if (x > )
 		transform.Translate(x, y, 0);
 		//tmp.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
-		if (health == 0)
-		{
-			health = 6; //TODO This is the defeat condition
-		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collObj)
 	{
 		if (collObj.gameObject.tag == "hen")
 		{
-			transform.position = new Vector2(-2.0f, 3.0f);
 			health--;
-			Debug.Log("PRZEGRYW" + health); //TODO lose life, reset position function
-		}
+			Debug.Log("PRZEGRYW " + health);
+            if (health == 0)
+            {
+                GameOverTransition();
+                health = 6; //TODO This is the defeat condition
+            }
+            else
+            {
+                transform.position = startPosition;
+            }
+        }
 	}
 }

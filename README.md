@@ -8,3 +8,4 @@ TODO:
 * add death handling to the player
 * add hen projectiles
 * add death handling for the projectiles
+* add Corn losing its grain with health
