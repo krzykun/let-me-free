@@ -8,6 +8,7 @@ public class PlayerMoveController : MonoBehaviour {
 	public int health = 6;
     public Vector2 startPosition;
     public Vector2 endPosition;
+    public int HenHitPenalty = 1;
 
 
 	// Use this for initialization
@@ -40,21 +41,26 @@ public class PlayerMoveController : MonoBehaviour {
 		//tmp.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
 	}
 
+    public void TakeDamage(int DamageValue)
+    {
+        health -= DamageValue;
+        Debug.Log("Player took "+DamageValue+" points of damage. Current health: " + health);
+        if (health <= 0)
+        {
+            GameOverTransition();
+            health = 6; //TODO This is the defeat condition
+        }
+        else
+        {
+            transform.position = startPosition;
+        }
+    }
+
 	void OnCollisionEnter2D(Collision2D collObj)
 	{
-		if (collObj.gameObject.tag == "hen")
+		if ((collObj.gameObject.tag == "hen") || (collObj.gameObject.tag == "deadly"))
 		{
-			health--;
-			Debug.Log("PRZEGRYW " + health);
-            if (health == 0)
-            {
-                GameOverTransition();
-                health = 6; //TODO This is the defeat condition
-            }
-            else
-            {
-                transform.position = startPosition;
-            }
+            TakeDamage(HenHitPenalty);
         }
 	}
 }
