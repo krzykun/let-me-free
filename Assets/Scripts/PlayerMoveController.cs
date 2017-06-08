@@ -33,6 +33,11 @@ public class PlayerMoveController : MonoBehaviour {
 		var x = Input.GetAxis("Horizontal") * Time.deltaTime * velCoeff;
 		var y = Input.GetAxis("Vertical") * Time.deltaTime * velCoeff;
 
+        if (Input.GetKeyDown("space"))
+        {
+            jump();
+        }
+
 		//var x = Input.GetAxis("Horizontal") * 20.0f;
 		//var y = Input.GetAxis("Vertical") * 20.0f;
 
@@ -40,6 +45,11 @@ public class PlayerMoveController : MonoBehaviour {
 		transform.Translate(x, y, 0);
 		//tmp.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
 	}
+
+    void jump()
+    {
+        //this.GetComponent<SpriteRenderer>().
+    }
 
     public void TakeDamage(int DamageValue)
     {
