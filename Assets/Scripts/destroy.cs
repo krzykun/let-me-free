@@ -19,14 +19,17 @@ public class destroy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag == "Player")
+        if (collider.tag == "Player")
         {
-            collider.GetComponent<PlayerMoveController>().TakeDamage(ProjectileHitPenalty);
+            if (collider.GetComponent<PlayerMoveController>().TakeDamage(ProjectileHitPenalty))
+            {
+                Destroy(this.gameObject);
+            }
         }
-
-        if ((collider.tag != "hen") && (collider.tag != "deadly"))
-        {
-            Destroy(this.gameObject);
-        }
+        else
+            if ((collider.tag != "hen") && (collider.tag != "deadly"))
+            {
+                Destroy(this.gameObject);
+            }
     }
 }

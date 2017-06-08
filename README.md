@@ -5,7 +5,7 @@ TODO:
 Added elements are shifted to the right.
 
 ###### Graphics & Gameplay
-* Switch corn sprite
+  * Switch corn sprite
 * add jump handling to the corn
 * add death handling to the player
   * add hen projectiles

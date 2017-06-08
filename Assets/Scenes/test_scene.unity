@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 1595815969}
   - component: {fileID: 1595815973}
   - component: {fileID: 1595815972}
+  - component: {fileID: 1595815975}
   m_Layer: 0
   m_Name: corn
   m_TagString: Player
@@ -565,6 +566,8 @@ MonoBehaviour:
   startPosition: {x: -7, y: 1.6}
   endPosition: {x: 0, y: 0}
   HenHitPenalty: 1
+  JumpAnimation: {fileID: 0}
+  JumpDuration: 1
 --- !u!212 &1595815970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -612,7 +615,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1595815968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 2.8, z: 0}
+  m_LocalPosition: {x: -6.73, y: 3.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -663,6 +666,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!111 &1595815975
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1595815968}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a664d12ac13db324cb3336da0861f927, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a664d12ac13db324cb3336da0861f927, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1749268132
 GameObject:
   m_ObjectHideFlags: 0
