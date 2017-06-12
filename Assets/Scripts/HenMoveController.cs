@@ -20,7 +20,6 @@ public class HenMoveController : MonoBehaviour {
 		speed *= -1;
 		goingLeft = !goingLeft;
 		rend.flipX = goingLeft;
-
 	}
 
 	// Update is called once per frame
@@ -35,5 +34,4 @@ public class HenMoveController : MonoBehaviour {
 			switchDirection();
 		}
 	}
-	
 }

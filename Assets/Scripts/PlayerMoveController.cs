@@ -11,10 +11,10 @@ public class PlayerMoveController : MonoBehaviour {
     public int HenHitPenalty = 1;
     public Animation JumpAnimation;
     public float JumpDuration = 1.0f;
-    private bool isJumping = true;
+    private bool isJumping = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         JumpAnimation = this.GetComponent<Animation>();
 	}
 
@@ -74,7 +74,7 @@ public class PlayerMoveController : MonoBehaviour {
             Physics2D.IgnoreCollision(Hen.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
         }
 
-        //isJumping = false;
+        isJumping = false;
     }
 
     /*
@@ -93,6 +93,7 @@ public class PlayerMoveController : MonoBehaviour {
             }
             else
             {
+                //TODO GetComponent<SpriteRenderer>().sprite = GetComponent<SpriteRenderer>().Sprite[health];
                 transform.position = startPosition;
             }
             return true;
