@@ -5,12 +5,13 @@ using UnityEngine;
 public class shooter : MonoBehaviour {
 
     public float ShootPeriod;
-    public GameObject HenProjectile;
+    public GameObject HenProjectileRight;
+    public GameObject HenProjectileLeft;
     public float ProjectileSpeed;
 
 	// Use this for initialization
 	void Start () {
-        //StartCoroutine(shoots());
+        StartCoroutine(shoots());
 	}
 	
 	// Update is called once per frame
@@ -24,13 +25,14 @@ public class shooter : MonoBehaviour {
         {
             yield return new WaitForSeconds(ShootPeriod);
 
-            GameObject newProjectile = (GameObject)Instantiate(HenProjectile, transform.position, Quaternion.identity);
             if (this.gameObject.GetComponent<HenMoveController>().goingLeft)
             {
+                GameObject newProjectile = (GameObject)Instantiate(HenProjectileLeft, transform.position, Quaternion.identity);
                 newProjectile.GetComponent<ProjectileMoveController>().ProjectileSpeed = ProjectileSpeed;
             }
             else
             {
+                GameObject newProjectile = (GameObject)Instantiate(HenProjectileRight, transform.position, Quaternion.identity);
                 newProjectile.GetComponent<ProjectileMoveController>().ProjectileSpeed = -ProjectileSpeed;
             }
             

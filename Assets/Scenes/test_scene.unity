@@ -575,8 +575,20 @@ MonoBehaviour:
   - {fileID: 21300018, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
   - {fileID: 21300016, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
   - {fileID: 21300014, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
-  WalkRightSprites: []
-  WalkLeftSprites: []
+  WalkRightSprites:
+  - {fileID: 21300012, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300010, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300008, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300006, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300004, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300002, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  WalkLeftSprites:
+  - {fileID: 21300024, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300022, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300020, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300018, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300016, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
+  - {fileID: 21300014, guid: d54493db585a92342b2cce62cb8b2e1b, type: 3}
 --- !u!212 &1595815970
 SpriteRenderer:
   m_ObjectHideFlags: 0
