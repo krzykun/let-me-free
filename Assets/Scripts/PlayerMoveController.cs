@@ -11,6 +11,9 @@ public class PlayerMoveController : MonoBehaviour {
     public int HenHitPenalty = 1;
     public Animation JumpAnimation;
     public float JumpDuration = 1.0f;
+    public Sprite[] PlayerSprites;
+    public Sprite[] WalkRightSprites;
+    public Sprite[] WalkLeftSprites;
     private bool isJumping = false;
 
     // Use this for initialization
@@ -40,12 +43,16 @@ public class PlayerMoveController : MonoBehaviour {
             jump();
         }
 
-		//var x = Input.GetAxis("Horizontal") * 20.0f;
-		//var y = Input.GetAxis("Vertical") * 20.0f;
+        if ( x < 0)
+        {
 
-		//if (x > )
+        }
+        else
+        {
+
+        }
+
 		transform.Translate(x, y, 0);
-		//tmp.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
 	}
 
     void jump()
@@ -88,12 +95,14 @@ public class PlayerMoveController : MonoBehaviour {
             Debug.Log("Player took " + DamageValue + " points of damage. Current health: " + health);
             if (health <= 0)
             {
+                //todo sprite change
                 GameOverTransition();
                 health = 6; //TODO This is the defeat condition
+                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
             }
             else
             {
-                //TODO GetComponent<SpriteRenderer>().sprite = GetComponent<SpriteRenderer>().Sprite[health];
+                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
                 transform.position = startPosition;
             }
             return true;
