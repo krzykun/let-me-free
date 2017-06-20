@@ -5,6 +5,7 @@ TODO:
 Added elements are shifted to the right.
 
 ###### Graphics & Gameplay
+* Hello there!
   * Switch corn sprite
   * add jump handling to the corn
 * add death handling to the player

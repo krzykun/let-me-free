@@ -102,17 +102,13 @@ public class PlayerMoveController : MonoBehaviour {
         {
             health -= DamageValue;
             Debug.Log("Player took " + DamageValue + " points of damage. Current health: " + health);
-            if (health <= 0)
+            if (health > 0)
             {
+                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
                 //todo sprite change
-                GameOverTransition();
-                health = 6; //TODO This is the defeat condition
-                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
-                transform.position = startPosition;
+                //GameOverTransition();
+                //health = 6; //TODO This is the defeat condition
+                //GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
             }
             return true;
         }
