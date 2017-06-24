@@ -5,9 +5,11 @@ using UnityEngine;
 public class LocationLevelEndController : MonoBehaviour {
 
     public GameObject LocationThisLevelRespawn;
-    public LocationLevelEndController LocationNextLevelController;
-    public PlayerMoveController PlayerHandle;
+    public LocationLevelEndController LocationNextLevelController; //remove, scenecontroller's job
+    public PlayerMoveController PlayerHandle; //should be given by scenecontroller when activating scene
     private bool LevelActive = false;
+    //int levelnumber;
+    //SceneController GameController;
 
     public void ActivateThisLevel()
     {
@@ -23,12 +25,15 @@ public class LocationLevelEndController : MonoBehaviour {
     private void EndLevel()
     {
         LevelActive = false;
-        LocationNextLevelController.ActivateThisLevel();
+        if (LocationNextLevelController != null)
+        {
+            LocationNextLevelController.ActivateThisLevel(); //instead tell scenecontroller that level is over
+        }      
     }
 
 	// Use this for initialization
 	void Start () {
-        ActivateThisLevel();
+        ActivateThisLevel(); //delete this
 	}
 	
 	// Update is called once per frame
