@@ -8,16 +8,18 @@ public class LocationLevelEndController : MonoBehaviour {
     public LocationLevelEndController LocationNextLevelController; //remove, scenecontroller's job
     public PlayerMoveController PlayerHandle; //should be given by scenecontroller when activating scene
     private bool LevelActive = false;
-    //int levelnumber;
-    //SceneController GameController;
+    private SceneController ParentController;
+    private int LevelNumber;
 
-    public void ActivateThisLevel()
+    public void ActivateThisLevel(int levelNumberParameter,  SceneController parentControllerParameter)
     {
+        ParentController = parentControllerParameter;
+        LevelNumber = levelNumberParameter;
         PlayerHandle.transform.position = LocationThisLevelRespawn.transform.position;
         LevelActive = true;
     }
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         PlayerHandle.transform.position = LocationThisLevelRespawn.transform.position;
     }
@@ -25,15 +27,16 @@ public class LocationLevelEndController : MonoBehaviour {
     private void EndLevel()
     {
         LevelActive = false;
-        if (LocationNextLevelController != null)
-        {
-            LocationNextLevelController.ActivateThisLevel(); //instead tell scenecontroller that level is over
-        }      
+        //if (LocationNextLevelController != null)
+        //{
+        //    LocationNextLevelController.ActivateThisLevel(); //instead tell scenecontroller that level is over
+        //}
+        ParentController.PlayerHasReachedEndOfLevel(LevelNumber);
     }
 
 	// Use this for initialization
 	void Start () {
-        ActivateThisLevel(); //delete this
+        //ActivateThisLevel(); //delete this
 	}
 	
 	// Update is called once per frame

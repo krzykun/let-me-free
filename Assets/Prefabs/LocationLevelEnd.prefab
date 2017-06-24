@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114366036975282818}
   m_Layer: 0
   m_Name: LocationLevelEnd
-  m_TagString: Untagged
+  m_TagString: EndLocation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

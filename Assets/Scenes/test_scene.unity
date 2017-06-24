@@ -169,6 +169,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edfab3ddf7698134d85fd68a1623d89c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &174745686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 174745688}
+  - component: {fileID: 174745687}
+  m_Layer: 0
+  m_Name: ScenesControllerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &174745687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 174745686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d7e444085a8504d8020df8b07a89f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &174745688
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 174745686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1402764, y: 1.1955798, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &486941910
 Prefab:
   m_ObjectHideFlags: 0
@@ -211,6 +251,10 @@ Prefab:
     - target: {fileID: 1662790330382998, guid: 0cc2c21a76ba7224789095d9f030e31f, type: 2}
       propertyPath: m_Name
       value: LocationLevelStart_other
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662790330382998, guid: 0cc2c21a76ba7224789095d9f030e31f, type: 2}
+      propertyPath: m_TagString
+      value: StartLocation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0cc2c21a76ba7224789095d9f030e31f, type: 2}
@@ -482,7 +526,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1662790330382998, guid: 0cc2c21a76ba7224789095d9f030e31f, type: 2}
       propertyPath: m_TagString
-      value: Start
+      value: StartLocation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0cc2c21a76ba7224789095d9f030e31f, type: 2}
@@ -776,7 +820,7 @@ GameObject:
   - component: {fileID: 2101673993}
   m_Layer: 0
   m_Name: LocationLevelEnd_other
-  m_TagString: Untagged
+  m_TagString: EndLocation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
