@@ -29,7 +29,7 @@ public class destroy : MonoBehaviour
 		}
 		else
 		{
-			if ((collider.tag != "hen") && (collider.tag != "deadly"))
+			if ((collider.tag != "hen") && (collider.tag != "deadly") && (collider.tag != "Endpoint"))
 			{
 				Destroy (this.gameObject);
 			}

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndpointController : MonoBehaviour {
+public class EndpointController : MonoBehaviour
+{
 
 	public event Action OnTriggerEntered = delegate {};
 
