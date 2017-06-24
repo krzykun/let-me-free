@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61592018157991984}
   - component: {fileID: 114876601730577006}
   - component: {fileID: 114771167576996434}
-  - component: {fileID: 82707324124822874}
+  - component: {fileID: 82601028711319116}
   m_Layer: 0
   m_Name: hen
   m_TagString: hen
@@ -90,7 +90,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!82 &82707324124822874
+--- !u!82 &82601028711319116
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

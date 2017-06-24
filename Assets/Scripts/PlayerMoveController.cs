@@ -23,6 +23,7 @@ public class PlayerMoveController : MonoBehaviour
     void Start ()
 	{
         JumpAnimation = this.GetComponent<Animation>();
+        OnPlayerDeath = GameOverTransition;
 	}
 
     // TODO This is triggered once the player reaches endPosition
@@ -114,7 +115,8 @@ public class PlayerMoveController : MonoBehaviour
                 //health = 6; //TODO This is the defeat condition
                 //GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
             }
-			if (health <= 0) {
+            else
+			{
 				OnPlayerDeath ();
 			}
             return true;
