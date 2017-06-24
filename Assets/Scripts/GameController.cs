@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(AudioListener), typeof(Camera))]
 public class GameController : MonoBehaviour
 {
-    private AudioListener _audioListener;
-    private Camera _camera;
+    public AudioListener _audioListener;
+    public Camera _camera;
+
+	private int _level = 1;
 
     public bool IsMusicEnabled
     {
@@ -15,20 +16,11 @@ public class GameController : MonoBehaviour
         set { _audioListener.enabled = value; }
     }
 
-    private void Awake()
-    {
-        _camera = GetComponent<Camera>();
-        _audioListener = GetComponent<AudioListener>();
-    }
-
-    // Use this for initialization
     void Start()
     {
-    }
+		DontDestroyOnLoad (gameObject);
 
-    // Update is called once per frame
-    void Update()
-    {
+		SceneManager.sceneLoaded += HandleSceneLoad;
     }
 
     public void SetMusicEnabled(bool enabled)
@@ -36,11 +28,46 @@ public class GameController : MonoBehaviour
         IsMusicEnabled = enabled;
     }
 
+	private void LoadLevel(int level)
+	{
+		Debug.Log("Loading level " + level);
+		SceneManager.LoadScene ("game_level_" + level);
+	}
+
     public void StartGame()
     {
         Debug.Log("StartGame()");
-		SceneManager.LoadScene ("level01");
+		_level = 1;
+		LoadLevel (_level);
     }
+
+	private void HandleSceneLoad(Scene scene, LoadSceneMode mode)
+	{
+		if (scene.name.StartsWith ("game_level"))
+		{
+			SetupLevel ();
+		}
+	}
+
+	private void SetupLevel()
+	{
+		GameObject endpoint = GameObject.FindGameObjectWithTag ("Endpoint");
+		EndpointController endpointController = endpoint.GetComponent<EndpointController> ();
+
+		endpointController.OnTriggerEntered += LoadNextLevel;
+		endpointController.OnTriggerEntered += AddPlayerScore;
+	}
+
+	private void AddPlayerScore()
+	{
+		Debug.Log ("adding score to player");
+	}
+
+	private void LoadNextLevel()
+	{
+		_level += 1;
+		LoadLevel (_level);
+	}
 
     public void ExitGame()
     {

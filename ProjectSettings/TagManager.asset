@@ -10,6 +10,8 @@ TagManager:
   - StartLocation
   - EndLocation
   - Start
+  - Endpoint
+  - endpoint
   layers:
   - Default
   - TransparentFX

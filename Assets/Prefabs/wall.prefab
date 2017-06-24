@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212943432407376318}
   - component: {fileID: 114031149257886454}
   m_Layer: 0
-  m_Name: square_bush
+  m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
