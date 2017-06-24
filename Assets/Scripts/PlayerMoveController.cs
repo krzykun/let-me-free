@@ -17,6 +17,8 @@ public class PlayerMoveController : MonoBehaviour
     public Sprite[] WalkLeftSprites;
     private bool isJumping = false;
 
+	public event Action OnPlayerDeath = delegate {};
+
     void Start ()
 	{
         JumpAnimation = this.GetComponent<Animation>();

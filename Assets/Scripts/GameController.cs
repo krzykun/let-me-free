@@ -56,6 +56,12 @@ public class GameController : MonoBehaviour
 
 		endpointController.OnTriggerEntered += LoadNextLevel;
 		endpointController.OnTriggerEntered += AddPlayerScore;
+
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		PlayerMoveController playerController = endpoint.GetComponent<PlayerMoveController> ();
+		playerController.OnPlayerDeath += () => {
+			Debug.Log("player death from game controller");	
+		};
 	}
 
 	private void AddPlayerScore()
