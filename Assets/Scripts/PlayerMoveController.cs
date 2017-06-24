@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviour {
+public class PlayerMoveController : MonoBehaviour
+{
 
 	public float velCoeff = 1.0f;
 	public int health = 6;
@@ -16,8 +17,8 @@ public class PlayerMoveController : MonoBehaviour {
     public Sprite[] WalkLeftSprites;
     private bool isJumping = false;
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+	{
         JumpAnimation = this.GetComponent<Animation>();
 	}
 
@@ -32,9 +33,9 @@ public class PlayerMoveController : MonoBehaviour {
     {
         Debug.Log("GAME OVER - add transition here");
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+	void FixedUpdate ()
+	{
 		var x = Input.GetAxis("Horizontal") * Time.deltaTime * velCoeff;
 		var y = Input.GetAxis("Vertical") * Time.deltaTime * velCoeff;
 

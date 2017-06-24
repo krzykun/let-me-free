@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shooter : MonoBehaviour {
+public class ShotController : MonoBehaviour
+{
 
     public float ShootPeriod;
     public GameObject HenProjectileRight;
     public GameObject HenProjectileLeft;
     public float ProjectileSpeed;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
         StartCoroutine(shoots());
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
+
+	void Update ()
+	{
+		
 	}
 
     IEnumerator shoots()

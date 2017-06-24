@@ -3,15 +3,16 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class HenMoveController : MonoBehaviour {
+public class HenMoveController : MonoBehaviour
+{
 
 	public Transform[] waypoints;
 	public bool goingLeft = false; // Tells us if the hen is going right (1) or left (0)
 	public float speed = 0.1f; // The amount given to Translate function on every update
 	private SpriteRenderer rend;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		rend = this.GetComponent<SpriteRenderer>();
 	}
 	
@@ -22,8 +23,8 @@ public class HenMoveController : MonoBehaviour {
 		rend.flipX = goingLeft;
 	}
 
-	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate ()
+	{
 		transform.Translate(speed, 0, 0);
 	}
 
