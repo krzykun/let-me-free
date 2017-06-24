@@ -11,10 +11,13 @@ public class PlayerMoveController : MonoBehaviour {
     public int HenHitPenalty = 1;
     public Animation JumpAnimation;
     public float JumpDuration = 1.0f;
-    private bool isJumping = true;
+    public Sprite[] PlayerSprites;
+    public Sprite[] WalkRightSprites;
+    public Sprite[] WalkLeftSprites;
+    private bool isJumping = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         JumpAnimation = this.GetComponent<Animation>();
 	}
 
@@ -40,12 +43,25 @@ public class PlayerMoveController : MonoBehaviour {
             jump();
         }
 
-		//var x = Input.GetAxis("Horizontal") * 20.0f;
-		//var y = Input.GetAxis("Vertical") * 20.0f;
+        if ( x == 0)
+        {
+        }
+        else
+        {
+            if ( x < 0)
+            {
+                Debug.Log("x < 0");
+                GetComponent<SpriteRenderer>().sprite = WalkLeftSprites[health - 1];
+            }
+            else
+            {
+                Debug.Log("x > 0");
+                GetComponent<SpriteRenderer>().sprite = WalkRightSprites[health - 1];
+            }
 
-		//if (x > )
+        }
+
 		transform.Translate(x, y, 0);
-		//tmp.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
 	}
 
     void jump()
@@ -74,7 +90,7 @@ public class PlayerMoveController : MonoBehaviour {
             Physics2D.IgnoreCollision(Hen.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
         }
 
-        //isJumping = false;
+        isJumping = false;
     }
 
     /*
@@ -86,14 +102,13 @@ public class PlayerMoveController : MonoBehaviour {
         {
             health -= DamageValue;
             Debug.Log("Player took " + DamageValue + " points of damage. Current health: " + health);
-            if (health <= 0)
+            if (health > 0)
             {
-                GameOverTransition();
-                health = 6; //TODO This is the defeat condition
-            }
-            else
-            {
-                transform.position = startPosition;
+                GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
+                //todo sprite change
+                //GameOverTransition();
+                //health = 6; //TODO This is the defeat condition
+                //GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
             }
             return true;
         }
