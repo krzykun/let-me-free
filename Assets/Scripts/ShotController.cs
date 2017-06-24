@@ -10,8 +10,11 @@ public class ShotController : MonoBehaviour
     public GameObject HenProjectileLeft;
     public float ProjectileSpeed;
 
+	private AudioSource _audioSource;
+
 	void Start ()
 	{
+		_audioSource = GetComponent<AudioSource> ();
         StartCoroutine(shoots());
 	}
 
@@ -25,6 +28,8 @@ public class ShotController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(ShootPeriod);
+
+			_audioSource.Play ();
 
             if (this.gameObject.GetComponent<HenMoveController>().goingLeft)
             {
