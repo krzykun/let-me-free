@@ -10,7 +10,7 @@ public class shooter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(shoots());
+        //StartCoroutine(shoots());
 	}
 	
 	// Update is called once per frame

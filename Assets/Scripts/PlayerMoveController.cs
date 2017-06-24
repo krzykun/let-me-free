@@ -9,11 +9,13 @@ public class PlayerMoveController : MonoBehaviour {
     public Vector2 startPosition;
     public Vector2 endPosition;
     public int HenHitPenalty = 1;
-
+    public Animation JumpAnimation;
+    public float JumpDuration = 1.0f;
+    private bool isJumping = true;
 
 	// Use this for initialization
 	void Start () {
-		
+        JumpAnimation = this.GetComponent<Animation>();
 	}
 
     // TODO This is triggered once the player reaches endPosition
@@ -48,22 +50,55 @@ public class PlayerMoveController : MonoBehaviour {
 
     void jump()
     {
-        //this.GetComponent<SpriteRenderer>().
+        JumpAnimation.Play("JumpAnimation");
+        StartCoroutine(DisableCollisionWhileJumping());
+    }
+    
+    IEnumerator DisableCollisionWhileJumping()
+    {
+        isJumping = true;
+        
+        // Disable collision with every Hen
+        GameObject[] HenArray = GameObject.FindGameObjectsWithTag("hen");
+        foreach (var Hen in HenArray)
+        {
+            Physics2D.IgnoreCollision(Hen.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
+        }
+
+        //this.GetComponent<Collider2D>();
+        yield return new WaitForSeconds(JumpDuration);
+        
+        // Enable collision with every Hen
+        foreach (var Hen in HenArray)
+        {
+            Physics2D.IgnoreCollision(Hen.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+        }
+
+        //isJumping = false;
     }
 
-    public void TakeDamage(int DamageValue)
+    /*
+     * Returns true if player should take damage, false if player is immune to damage
+     */
+    public bool TakeDamage(int DamageValue)
     {
-        health -= DamageValue;
-        Debug.Log("Player took "+DamageValue+" points of damage. Current health: " + health);
-        if (health <= 0)
+        if (!isJumping)
         {
-            GameOverTransition();
-            health = 6; //TODO This is the defeat condition
+            health -= DamageValue;
+            Debug.Log("Player took " + DamageValue + " points of damage. Current health: " + health);
+            if (health <= 0)
+            {
+                GameOverTransition();
+                health = 6; //TODO This is the defeat condition
+            }
+            else
+            {
+                transform.position = startPosition;
+            }
+            return true;
         }
-        else
-        {
-            transform.position = startPosition;
-        }
+        else return false;
+        
     }
 
 	void OnCollisionEnter2D(Collision2D collObj)
