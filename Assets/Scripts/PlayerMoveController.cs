@@ -113,6 +113,9 @@ public class PlayerMoveController : MonoBehaviour
                 //health = 6; //TODO This is the defeat condition
                 //GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
             }
+			if (health <= 0) {
+				OnPlayerDeath ();
+			}
             return true;
         }
         else return false;
