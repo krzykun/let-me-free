@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioListener), typeof(Camera))]
 public class GameController : MonoBehaviour
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("StartGame()");
+		SceneManager.LoadScene ("level01");
     }
 
     public void ExitGame()
