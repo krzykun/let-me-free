@@ -19,6 +19,7 @@ public class PlayerMoveController : MonoBehaviour
     private bool isJumping = false;
 
 	public event Action OnPlayerDeath = delegate {};
+    public AudioSource deathSoundSource;
 
     void Start ()
 	{
@@ -35,6 +36,7 @@ public class PlayerMoveController : MonoBehaviour
     // TODO This is a trigger function for the 'game over' scene transition
     void GameOverTransition()
     {
+        deathSoundSource.Play();
         Debug.Log("GAME OVER - add transition here");
     }
 
