@@ -55,12 +55,12 @@ public class PlayerMoveController : MonoBehaviour
         {
             if ( x < 0)
             {
-                Debug.Log("x < 0");
+                //Debug.Log("x < 0");
                 GetComponent<SpriteRenderer>().sprite = WalkLeftSprites[health - 1];
             }
             else
             {
-                Debug.Log("x > 0");
+                //Debug.Log("x > 0");
                 GetComponent<SpriteRenderer>().sprite = WalkRightSprites[health - 1];
             }
 
