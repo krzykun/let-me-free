@@ -2,7 +2,7 @@
 A 2D game about a corn searching for it's destiny.
 
 TODO:
-Added elements are shifted to the right.
+The elements that are already added are marked with a shift to the right.
 
 ###### Graphics & Gameplay
 * Hello there!
@@ -16,3 +16,5 @@ Added elements are shifted to the right.
 * add levels
 * add win/lose screens
 * add start / end points handling to each level (handled with collision)
+* add start cinematic
+* add sounds
