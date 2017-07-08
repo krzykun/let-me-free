@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMoveController : MonoBehaviour
 {
 
-	public float velCoeff = 1.0f;
-	public int health = 6;
+    public float velCoeff = 1.0f;
+    public int health = 6;
     public Vector2 startPosition;
     public Vector2 endPosition;
     public int HenHitPenalty = 1;
@@ -17,14 +17,20 @@ public class PlayerMoveController : MonoBehaviour
     public Sprite[] WalkRightSprites;
     public Sprite[] WalkLeftSprites;
     private bool isJumping = false;
+    public bool IsGamePlayed = false;
 
 	public event Action OnPlayerDeath = delegate {};
     public AudioSource deathSoundSource;
 
+    public void SetIsGamePlayed(bool newValue)
+    {
+        IsGamePlayed = newValue;
+    }
+
     void Start ()
 	{
         JumpAnimation = this.GetComponent<Animation>();
-        OnPlayerDeath = GameOverTransition;
+        //OnPlayerDeath = GameOverTransition;
 	}
 
     // TODO This is triggered once the player reaches endPosition
@@ -42,33 +48,37 @@ public class PlayerMoveController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		var x = Input.GetAxis("Horizontal") * Time.deltaTime * velCoeff;
-		var y = Input.GetAxis("Vertical") * Time.deltaTime * velCoeff;
+        if (IsGamePlayed)
+        {
+            var x = Input.GetAxis("Horizontal") * Time.deltaTime * velCoeff;
+            var y = Input.GetAxis("Vertical") * Time.deltaTime * velCoeff;
 
-        if (Input.GetKeyDown("space"))
-        {
-            jump();
-        }
-
-        if ( x == 0)
-        {
-        }
-        else
-        {
-            if ( x < 0)
+            if (Input.GetKeyDown("space"))
             {
-                //Debug.Log("x < 0");
-                GetComponent<SpriteRenderer>().sprite = WalkLeftSprites[health - 1];
+                jump();
+            }
+
+            if (x == 0)
+            {
             }
             else
             {
-                //Debug.Log("x > 0");
-                GetComponent<SpriteRenderer>().sprite = WalkRightSprites[health - 1];
+                if (x < 0)
+                {
+                    //Debug.Log("x < 0");
+                    GetComponent<SpriteRenderer>().sprite = WalkLeftSprites[health - 1];
+                }
+                else
+                {
+                    //Debug.Log("x > 0");
+                    GetComponent<SpriteRenderer>().sprite = WalkRightSprites[health - 1];
+                }
+
             }
 
+            transform.Translate(x, y, 0);
         }
 
-		transform.Translate(x, y, 0);
 	}
 
     void jump()
@@ -112,6 +122,7 @@ public class PlayerMoveController : MonoBehaviour
             if (health > 0)
             {
                 GetComponent<SpriteRenderer>().sprite = PlayerSprites[health - 1];
+                //GetComponent<EndpointController>()
                 //todo sprite change
                 //GameOverTransition();
                 //health = 6; //TODO This is the defeat condition
@@ -120,6 +131,7 @@ public class PlayerMoveController : MonoBehaviour
             else
 			{
 				OnPlayerDeath ();
+                Debug.Log("PlayerMoveController.OnPlayerDeath() fired");
 			}
             return true;
         }

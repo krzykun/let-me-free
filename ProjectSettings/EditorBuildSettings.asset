@@ -20,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/game_level_3.unity
     guid: 6decfa28ef687c64b8ce494526bef42d
+  - enabled: 1
+    path: Assets/Scenes/communication/endlose.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/communication/endwin.unity
+    guid: 25a7c95f54f72aa45b454f149c2fc3a6

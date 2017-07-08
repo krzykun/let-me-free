@@ -7,8 +7,10 @@ public class GameController : MonoBehaviour
 {
     public AudioListener _audioListener;
     public Camera _camera;
+    PlayerMoveController playerController;
 
-	private int _level = 1;
+
+    private int _level = 1;
 
     public bool IsMusicEnabled
     {
@@ -29,9 +31,9 @@ public class GameController : MonoBehaviour
     }
 
 	private void LoadLevel(int level)
-	{
-		Debug.Log("Loading level " + level);
-		SceneManager.LoadScene ("game_level_" + level);
+    {
+        Debug.Log("Loading level " + level);
+        SceneManager.LoadScene ("game_level_" + level);
 	}
 
     public void StartGame()
@@ -57,12 +59,26 @@ public class GameController : MonoBehaviour
 		endpointController.OnTriggerEntered += LoadNextLevel;
 		endpointController.OnTriggerEntered += AddPlayerScore;
 
-		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		PlayerMoveController playerController = endpoint.GetComponent<PlayerMoveController> ();
-		playerController.OnPlayerDeath += () => {
-			Debug.Log("player death from game controller");	
-		};
-	}
+		GameObject playerObjectHandle = GameObject.FindGameObjectWithTag ("Player");
+		playerController = playerObjectHandle.GetComponent<PlayerMoveController> ();
+		playerController.OnPlayerDeath += ondeath;
+        playerController.SetIsGamePlayed(true);
+    }
+
+    public void ondeath()
+    {
+        bool IsGamePlayed = false;
+        playerController.SetIsGamePlayed(IsGamePlayed);
+        Debug.Log("player death from game controller");
+        SceneManager.LoadScene("endlose");
+    }
+
+    private void PlayerWonTheGame()
+    {
+        bool IsGamePlayed = false;
+        playerController.SetIsGamePlayed(IsGamePlayed);
+        SceneManager.LoadScene("endwin");
+    }
 
 	private void AddPlayerScore()
 	{
