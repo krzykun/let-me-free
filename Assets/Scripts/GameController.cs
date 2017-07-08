@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public AudioListener _audioListener;
     public Camera _camera;
     PlayerMoveController playerController;
-
+    private int GameplayScenesCount;
 
     private int _level = 1;
 
@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
 		DontDestroyOnLoad (gameObject);
 
 		SceneManager.sceneLoaded += HandleSceneLoad;
+        GameplayScenesCount = SceneManager.sceneCountInBuildSettings - 3;
+        Debug.Log(GameplayScenesCount);
     }
 
     public void SetMusicEnabled(bool enabled)
@@ -75,6 +77,7 @@ public class GameController : MonoBehaviour
 
     private void PlayerWonTheGame()
     {
+        Debug.Log("GameController.PlayerWonTheGame");
         bool IsGamePlayed = false;
         playerController.SetIsGamePlayed(IsGamePlayed);
         SceneManager.LoadScene("endwin");
@@ -86,9 +89,16 @@ public class GameController : MonoBehaviour
 	}
 
 	private void LoadNextLevel()
-	{
-		_level += 1;
-		LoadLevel (_level);
+    {
+        _level += 1;
+        if ( _level <= GameplayScenesCount)
+        {
+            LoadLevel(_level);
+        }
+        else
+        {
+            PlayerWonTheGame();
+        }
 	}
 
     public void ExitGame()
