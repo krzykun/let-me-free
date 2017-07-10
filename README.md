@@ -13,8 +13,9 @@ The elements that are already added are marked with a shift to the right.
   * add death handling for the projectiles
   * add Corn losing its grain with health
   * add correct sprites for corn and projectiles
-* add levels
-* add win/lose screens
-* add start / end points handling to each level (handled with collision)
+* add real levels
+  * add win/lose screens
+* add real win/lose screens
+  * add start / end points handling to each level (handled with collision)
 * add start cinematic
 * add sounds
