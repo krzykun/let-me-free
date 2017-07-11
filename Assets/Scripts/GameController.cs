@@ -7,10 +7,12 @@ public class GameController : MonoBehaviour
 {
     public AudioListener _audioListener;
     public Camera _camera;
+    public GameObject[] introScenes;
     PlayerMoveController playerController;
     private int GameplayScenesCount;
 
     private int _level = 1;
+    private int _introScreen = 1;
 
     public bool IsMusicEnabled
     {
@@ -20,6 +22,10 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        foreach (GameObject introSplashScreen in introScenes)
+        {
+            introSplashScreen.SetActive(false);
+        }
 		DontDestroyOnLoad (gameObject);
 
 		SceneManager.sceneLoaded += HandleSceneLoad;
@@ -38,6 +44,35 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene ("game_level_" + level);
 	}
 
+    public void IntroductionStorySetup()
+    {
+        Debug.Log("IntroductionStorySetup()");
+        //hide previous UI
+        //show button
+        LoadNextIntroductionScreen();
+    }
+
+    public void LoadNextIntroductionScreen()
+    {
+        for (int i = 0; i < introScenes.Length; i++)
+        {
+            if (i != _introScreen)
+            {
+                introScenes[i].GetComponent<Renderer>().enabled = false;
+            }
+            else
+            {
+                introScenes[i].GetComponent<Renderer>().enabled = true;
+            }
+        }
+        _introScreen++;
+        if (_introScreen > 5)
+        {
+            //start the game after all introduction boards have been shown
+            StartGame();
+        }
+    }
+
     public void StartGame()
     {
         Debug.Log("StartGame()");
@@ -47,6 +82,7 @@ public class GameController : MonoBehaviour
 
 	private void HandleSceneLoad(Scene scene, LoadSceneMode mode)
 	{
+        Debug.Log("HandleSceneLoad");
 		if (scene.name.StartsWith ("game_level"))
 		{
 			SetupLevel ();
