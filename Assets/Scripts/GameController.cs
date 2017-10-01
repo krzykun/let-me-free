@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
 
     public ImageSwitcher ImageSwitcher;
     
-    public AudioListener _audioListener;
     public Camera _camera;
     PlayerMoveController playerController;
     private int GameplayScenesCount;
@@ -18,11 +17,7 @@ public class GameController : MonoBehaviour
     private int _level = 1;
     private int _introScreen;
 
-    public bool IsMusicEnabled
-    {
-        get { return _audioListener.enabled; }
-        set { _audioListener.enabled = value; }
-    }
+	public bool IsMusicEnabled = true;
 
     void Start()
     {
@@ -35,7 +30,8 @@ public class GameController : MonoBehaviour
 
     public void SetMusicEnabled(bool enabled)
     {
-        IsMusicEnabled = enabled;
+	    Debug.Log("Music: " + enabled);
+	    IsMusicEnabled = enabled;
     }
 
 	private void LoadLevel(int level)
@@ -86,6 +82,8 @@ public class GameController : MonoBehaviour
 
 	private void SetupLevel()
 	{
+		AudioListener.pause = !IsMusicEnabled;
+		
 		GameObject endpoint = GameObject.FindGameObjectWithTag ("Endpoint");
 		EndpointController endpointController = endpoint.GetComponent<EndpointController> ();
 
