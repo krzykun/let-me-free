@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public Canvas MainCanvas;
+    public Canvas PanelCanvas;
+
+    public ImageSwitcher ImageSwitcher;
+    
     public AudioListener _audioListener;
     public Camera _camera;
-    public GameObject[] introScenes;
     PlayerMoveController playerController;
     private int GameplayScenesCount;
 
     private int _level = 1;
-    private int _introScreen = 1;
+    private int _introScreen;
 
     public bool IsMusicEnabled
     {
@@ -22,10 +26,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        foreach (GameObject introSplashScreen in introScenes)
-        {
-            introSplashScreen.SetActive(false);
-        }
 		DontDestroyOnLoad (gameObject);
 
 		SceneManager.sceneLoaded += HandleSceneLoad;
@@ -47,30 +47,25 @@ public class GameController : MonoBehaviour
     public void IntroductionStorySetup()
     {
         Debug.Log("IntroductionStorySetup()");
-        //hide previous UI
-        //show button
+        
+	    _introScreen = 0;
+	    MainCanvas.gameObject.SetActive(false);
+	    PanelCanvas.gameObject.SetActive(true);
         LoadNextIntroductionScreen();
     }
 
     public void LoadNextIntroductionScreen()
     {
-        for (int i = 0; i < introScenes.Length; i++)
-        {
-            if (i != _introScreen)
-            {
-                introScenes[i].GetComponent<Renderer>().enabled = false;
-            }
-            else
-            {
-                introScenes[i].GetComponent<Renderer>().enabled = true;
-            }
-        }
-        _introScreen++;
-        if (_introScreen > 5)
-        {
-            //start the game after all introduction boards have been shown
-            StartGame();
-        }
+	    if (_introScreen < ImageSwitcher.Sprites.Length)
+	    {
+		    ImageSwitcher.SwitchImage(++_introScreen);
+	    }
+	    else
+	    {
+			MainCanvas.gameObject.SetActive(true);
+		    PanelCanvas.gameObject.SetActive(false);
+		    StartGame();
+	    }
     }
 
     public void StartGame()
